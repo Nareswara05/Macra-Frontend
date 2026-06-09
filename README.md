@@ -34,10 +34,3 @@ Macra adalah aplikasi pemantau asupan kalori harian, pemenuhan nutrisi makro, da
 * **Backend API**: Java Spring Boot.
 
 ---
-
-
-## 🧠 Cara Kerja MacraAI
-
-Sistem kecerdasan buatan pada aplikasi ini memanfaatkan endpoint `/api/ai` Next.js sebagai *secure gateway* ke Groq API:
-* **Analisis Aktivitas & Makanan**: Menginstruksikan LLM menggunakan sistem instruksi yang ketat agar membalas dalam format JSON terstruktur (`response_format: { type: "json_object" }`). Hal ini menjamin parsing gizi dan kalori 100% konsisten.
-* **Keamanan Kunci API**: Permintaan Groq diproses di sisi server (*server-side*), mencegah kunci API terekspos ke browser pengguna (*client-side*).
