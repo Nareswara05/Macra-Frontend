@@ -28,48 +28,13 @@ Macra adalah aplikasi pemantau asupan kalori harian, pemenuhan nutrisi makro, da
 ## 🛠️ Stack Teknologi
 
 * **Frontend**: Next.js 16 (App Router), React, TypeScript.
-* **Styling**: Tailwind CSS v3, PostCSS, Autoprefixer (desain dark mode premium terstandarisasi).
-* **HTTP Client**: Axios (dengan interceptor token JWT otomatis).
-* **AI Engine**: Meta Llama 3 (`llama-3.3-70b-versatile`) via Groq API.
-* **Backend API**: Java Spring Boot (berjalan di port `8080`).
+* **Styling**: Tailwind CSS v3, PostCSS, Autoprefixer.
+* **HTTP Client**: Axios.
+* **AI Engine**: Meta Llama 3.
+* **Backend API**: Java Spring Boot.
 
 ---
 
-## ⚙️ Persiapan & Instalasi
-
-### 1. Prasyarat
-Pastikan Anda memiliki:
-* Node.js v18 atau versi terbaru.
-* Service Backend Java Spring Boot berjalan pada port `8080`.
-
-### 2. Kloning & Instalasi Dependensi
-Jalankan perintah berikut di terminal:
-```bash
-npm install
-```
-
-### 3. Konfigurasi Environment Variables
-Buat berkas `.env.local` pada direktori root proyek dan masukkan konfigurasi berikut:
-```env
-NEXT_PUBLIC_API_URL=http://localhost:8080/api
-GROQ_API_KEY=gsk_placeholder_meta_llama_api_key_9988776655
-```
-> **Catatan**: Jika `GROQ_API_KEY` tidak diatur atau masih berupa placeholder, MacraAI akan otomatis berjalan dalam **Mode Demo** (menggunakan respon simulasi yang aman agar tidak terjadi error pada UI). Segera ganti dengan kunci API asli dari Groq untuk mengaktifkan AI secara penuh.
-
-### 4. Menjalankan Server Pengembangan
-Jalankan perintah berikut untuk memulai server lokal:
-```bash
-npm run dev
-```
-Buka [http://localhost:3000](http://localhost:3000) pada browser Anda.
-
-### 5. Membangun Bundle Produksi
-Untuk melakukan build versi produksi yang dioptimalkan:
-```bash
-npm run build
-```
-
----
 
 ## 🧠 Cara Kerja MacraAI
 
