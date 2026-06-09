@@ -1,36 +1,78 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Macra - Calorie Tracker & Health Assistant
 
-## Getting Started
+Macra adalah aplikasi pemantau asupan kalori harian, pemenuhan nutrisi makro, dan pelacak aktivitas fisik terpadu. Dilengkapi dengan **MacraAI**, sebuah asisten pintar berbasis kecerdasan buatan (Meta Llama 3 via Groq) untuk mempermudah pencatatan nutrisi, analisis aktivitas olahraga, dan konsultasi kesehatan langsung.
 
-First, run the development server:
+---
 
+## 🚀 Fitur Utama
+
+### 📊 1. Dashboard Kesehatan Interaktif
+* Perhitungan target harian personal berdasarkan data fisik pengguna (Berat Badan, Tinggi Badan, Usia, Target Diet, dan Tingkat Aktivitas).
+* Visualisasi lingkaran kalori (Calorie Ring) untuk melacak asupan tersisa secara real-time.
+* Pemantauan ringkas makronutrisi harian (Protein, Karbohidrat, Lemak, Serat).
+
+### 🥗 2. Pencatatan Makanan & Nutrisi
+* Pencatatan makanan yang dikonsumsi sepanjang hari.
+* **MacraAI Food Analyzer**: Pengguna cukup menuliskan nama makanan, dan AI akan menganalisis porsi standar beserta kandungan gizinya secara otomatis melalui popup interaktif sebelum disimpan.
+
+### 🏃 3. Pelacak Aktivitas Olahraga
+* Pencatatan durasi dan intensitas olahraga harian.
+* **MacraAI Activity Analyzer**: Cukup masukkan nama aktivitas fisik, dan AI akan mengestimasikan kalori yang terbakar serta merangkum risiko kesehatan/cedera jika aktivitas tersebut dilakukan secara berlebihan.
+
+### 💬 4. MacraAI Chatbot
+* Widget chat melayang yang dapat diakses di pojok kanan bawah semua halaman.
+* Diskusi interaktif seputar tips diet, resep makanan sehat, rekomendasi olahraga, dan konsultasi kesehatan umum secara responsif.
+
+---
+
+## 🛠️ Stack Teknologi
+
+* **Frontend**: Next.js 16 (App Router), React, TypeScript.
+* **Styling**: Tailwind CSS v3, PostCSS, Autoprefixer (desain dark mode premium terstandarisasi).
+* **HTTP Client**: Axios (dengan interceptor token JWT otomatis).
+* **AI Engine**: Meta Llama 3 (`llama-3.3-70b-versatile`) via Groq API.
+* **Backend API**: Java Spring Boot (berjalan di port `8080`).
+
+---
+
+## ⚙️ Persiapan & Instalasi
+
+### 1. Prasyarat
+Pastikan Anda memiliki:
+* Node.js v18 atau versi terbaru.
+* Service Backend Java Spring Boot berjalan pada port `8080`.
+
+### 2. Kloning & Instalasi Dependensi
+Jalankan perintah berikut di terminal:
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+npm install
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+### 3. Konfigurasi Environment Variables
+Buat berkas `.env.local` pada direktori root proyek dan masukkan konfigurasi berikut:
+```env
+NEXT_PUBLIC_API_URL=http://localhost:8080/api
+GROQ_API_KEY=gsk_placeholder_meta_llama_api_key_9988776655
+```
+> **Catatan**: Jika `GROQ_API_KEY` tidak diatur atau masih berupa placeholder, MacraAI akan otomatis berjalan dalam **Mode Demo** (menggunakan respon simulasi yang aman agar tidak terjadi error pada UI). Segera ganti dengan kunci API asli dari Groq untuk mengaktifkan AI secara penuh.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+### 4. Menjalankan Server Pengembangan
+Jalankan perintah berikut untuk memulai server lokal:
+```bash
+npm run dev
+```
+Buka [http://localhost:3000](http://localhost:3000) pada browser Anda.
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+### 5. Membangun Bundle Produksi
+Untuk melakukan build versi produksi yang dioptimalkan:
+```bash
+npm run build
+```
 
-## Learn More
+---
 
-To learn more about Next.js, take a look at the following resources:
+## 🧠 Cara Kerja MacraAI
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Sistem kecerdasan buatan pada aplikasi ini memanfaatkan endpoint `/api/ai` Next.js sebagai *secure gateway* ke Groq API:
+* **Analisis Aktivitas & Makanan**: Menginstruksikan LLM menggunakan sistem instruksi yang ketat agar membalas dalam format JSON terstruktur (`response_format: { type: "json_object" }`). Hal ini menjamin parsing gizi dan kalori 100% konsisten.
+* **Keamanan Kunci API**: Permintaan Groq diproses di sisi server (*server-side*), mencegah kunci API terekspos ke browser pengguna (*client-side*).
