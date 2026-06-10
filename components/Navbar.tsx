@@ -87,7 +87,7 @@ export default function Navbar() {
       </aside>
 
       {/* ── Bottom nav (mobile) ─────────────────────────────── */}
-      <nav className="flex md:hidden fixed bottom-0 left-0 right-0 z-100 bg-surface border-t border-border-light px-1 pt-1.5 pb-2.5">
+      <nav className="flex md:hidden fixed z-10 bottom-0 left-0 right-0 z-100 bg-surface border-t border-border-light px-1 pt-1.5 pb-2.5">
         {NAV_ITEMS.map(({ href, label, Icon }) => {
           const active = pathname === href;
           return (
