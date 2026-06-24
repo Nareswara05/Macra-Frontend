@@ -101,7 +101,7 @@ export default function AktivitasPage() {
   const totalBurned = todayList.reduce((s, a) => s + a.kalori, 0);
 
   return (
-    <div className="p-6 md:p-10 pb-24 md:pb-16 animate-fade-in">
+    <div className={`p-6 md:p-8 animate-fade-in ${showModal ? 'h-screen overflow-y-hidden' : 'overflow-y-auto'}`}>
       <div className="mb-7">
         <h1 className="text-2xl font-bold tracking-[-0.4px] text-text-primary flex items-center gap-2 mb-1">
           <FiActivity size={21} className="text-burned" /> Catat Aktivitas
