@@ -116,7 +116,7 @@ export default function KonsumsiPage() {
   const kb = dashData?.kebutuhanNutrisi;
 
   return (
-    <div className="p-6 md:p-8 animate-fade-in">
+    <div className={`p-6 md:p-8 animate-fade-in ${showModal ? 'h-screen overflow-y-hidden' : 'overflow-y-auto'}`}>
       <div className="mb-7">
         <h1 className="text-2xl font-bold tracking-[-0.4px] text-text-primary flex items-center gap-2 mb-1">
           <FiShoppingBag size={21} className="text-primary" /> Catat Makanan
@@ -285,7 +285,7 @@ export default function KonsumsiPage() {
       </div>
 
       {showModal && aiResult && (
-        <div className="fixed inset-0 z-[110] flex items-center justify-center bg-black/60 backdrop-blur-sm p-4 animate-fade-in">
+        <div className="fixed h-screen overflow-y-hidden  inset-0 z-[110] flex items-center justify-center bg-black/60 backdrop-blur-sm p-4 animate-fade-in">
           <div className="bg-surface border border-border rounded-2xl w-full max-w-md overflow-hidden shadow-2xl animate-fade-in">
             {/* Header */}
             <div className="p-6 border-b border-border-light flex justify-between items-center bg-primary-light/5">
